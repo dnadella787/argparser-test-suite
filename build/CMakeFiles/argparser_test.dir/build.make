@@ -57,27 +57,27 @@ include CMakeFiles/argparser_test.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/argparser_test.dir/flags.make
 
-CMakeFiles/argparser_test.dir/argparser_test.cpp.o: CMakeFiles/argparser_test.dir/flags.make
-CMakeFiles/argparser_test.dir/argparser_test.cpp.o: ../argparser_test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dnadella787/argparse-test-suite/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/argparser_test.dir/argparser_test.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/argparser_test.dir/argparser_test.cpp.o -c /home/dnadella787/argparse-test-suite/argparser_test.cpp
+CMakeFiles/argparser_test.dir/store_NTest.cpp.o: CMakeFiles/argparser_test.dir/flags.make
+CMakeFiles/argparser_test.dir/store_NTest.cpp.o: ../store_NTest.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dnadella787/argparse-test-suite/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/argparser_test.dir/store_NTest.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/argparser_test.dir/store_NTest.cpp.o -c /home/dnadella787/argparse-test-suite/store_NTest.cpp
 
-CMakeFiles/argparser_test.dir/argparser_test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/argparser_test.dir/argparser_test.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dnadella787/argparse-test-suite/argparser_test.cpp > CMakeFiles/argparser_test.dir/argparser_test.cpp.i
+CMakeFiles/argparser_test.dir/store_NTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/argparser_test.dir/store_NTest.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dnadella787/argparse-test-suite/store_NTest.cpp > CMakeFiles/argparser_test.dir/store_NTest.cpp.i
 
-CMakeFiles/argparser_test.dir/argparser_test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/argparser_test.dir/argparser_test.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dnadella787/argparse-test-suite/argparser_test.cpp -o CMakeFiles/argparser_test.dir/argparser_test.cpp.s
+CMakeFiles/argparser_test.dir/store_NTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/argparser_test.dir/store_NTest.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dnadella787/argparse-test-suite/store_NTest.cpp -o CMakeFiles/argparser_test.dir/store_NTest.cpp.s
 
 # Object files for target argparser_test
 argparser_test_OBJECTS = \
-"CMakeFiles/argparser_test.dir/argparser_test.cpp.o"
+"CMakeFiles/argparser_test.dir/store_NTest.cpp.o"
 
 # External object files for target argparser_test
 argparser_test_EXTERNAL_OBJECTS =
 
-argparser_test: CMakeFiles/argparser_test.dir/argparser_test.cpp.o
+argparser_test: CMakeFiles/argparser_test.dir/store_NTest.cpp.o
 argparser_test: CMakeFiles/argparser_test.dir/build.make
 argparser_test: lib/libgtest_main.a
 argparser_test: lib/libgtest.a

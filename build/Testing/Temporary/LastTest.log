@@ -1,20 +1,20 @@
-Start testing: Nov 23 04:58 PST
+Start testing: Nov 23 10:40 PST
 ----------------------------------------------------------
-1/2 Testing: store_test.proper_setup_works
-1/2 Test: store_test.proper_setup_works
-Command: "/home/dnadella787/argparse-test-suite/build/argparser_test" "--gtest_filter=store_test.proper_setup_works" "--gtest_also_run_disabled_tests"
+1/3 Testing: store_DeathTest.help_message_works1
+1/3 Test: store_DeathTest.help_message_works1
+Command: "/home/dnadella787/argparse-test-suite/build/argparser_test" "--gtest_filter=store_DeathTest.help_message_works1" "--gtest_also_run_disabled_tests"
 Directory: /home/dnadella787/argparse-test-suite/build
-"store_test.proper_setup_works" start time: Nov 23 04:58 PST
+"store_DeathTest.help_message_works1" start time: Nov 23 10:40 PST
 Output:
 ----------------------------------------------------------
 Running main() from /home/dnadella787/argparse-test-suite/build/_deps/googletest-src/googletest/src/gtest_main.cc
-Note: Google Test filter = store_test.proper_setup_works
+Note: Google Test filter = store_DeathTest.help_message_works1
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
-[----------] 1 test from store_test
-[ RUN      ] store_test.proper_setup_works
-[       OK ] store_test.proper_setup_works (1 ms)
-[----------] 1 test from store_test (1 ms total)
+[----------] 1 test from store_DeathTest
+[ RUN      ] store_DeathTest.help_message_works1
+[       OK ] store_DeathTest.help_message_works1 (1 ms)
+[----------] 1 test from store_DeathTest (1 ms total)
 
 [----------] Global test environment tear-down
 [==========] 1 test from 1 test suite ran. (1 ms total)
@@ -23,29 +23,62 @@ Note: Google Test filter = store_test.proper_setup_works
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"store_test.proper_setup_works" end time: Nov 23 04:58 PST
-"store_test.proper_setup_works" time elapsed: 00:00:00
+"store_DeathTest.help_message_works1" end time: Nov 23 10:40 PST
+"store_DeathTest.help_message_works1" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/2 Testing: store_test.help_message_works
-2/2 Test: store_test.help_message_works
-Command: "/home/dnadella787/argparse-test-suite/build/argparser_test" "--gtest_filter=store_test.help_message_works" "--gtest_also_run_disabled_tests"
+2/3 Testing: store_DeathTest.help_message_works2
+2/3 Test: store_DeathTest.help_message_works2
+Command: "/home/dnadella787/argparse-test-suite/build/argparser_test" "--gtest_filter=store_DeathTest.help_message_works2" "--gtest_also_run_disabled_tests"
 Directory: /home/dnadella787/argparse-test-suite/build
-"store_test.help_message_works" start time: Nov 23 04:58 PST
+"store_DeathTest.help_message_works2" start time: Nov 23 10:40 PST
 Output:
 ----------------------------------------------------------
 Running main() from /home/dnadella787/argparse-test-suite/build/_deps/googletest-src/googletest/src/gtest_main.cc
-Note: Google Test filter = store_test.help_message_works
+Note: Google Test filter = store_DeathTest.help_message_works2
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
-[----------] 1 test from store_test
-[ RUN      ] store_test.help_message_works
+[----------] 1 test from store_DeathTest
+[ RUN      ] store_DeathTest.help_message_works2
+[       OK ] store_DeathTest.help_message_works2 (1 ms)
+[----------] 1 test from store_DeathTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
 <end of output>
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"store_test.help_message_works" end time: Nov 23 04:58 PST
-"store_test.help_message_works" time elapsed: 00:00:00
+"store_DeathTest.help_message_works2" end time: Nov 23 10:40 PST
+"store_DeathTest.help_message_works2" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Nov 23 04:58 PST
+3/3 Testing: store_NormTest.proper_setup_works
+3/3 Test: store_NormTest.proper_setup_works
+Command: "/home/dnadella787/argparse-test-suite/build/argparser_test" "--gtest_filter=store_NormTest.proper_setup_works" "--gtest_also_run_disabled_tests"
+Directory: /home/dnadella787/argparse-test-suite/build
+"store_NormTest.proper_setup_works" start time: Nov 23 10:40 PST
+Output:
+----------------------------------------------------------
+Running main() from /home/dnadella787/argparse-test-suite/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = store_NormTest.proper_setup_works
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from store_NormTest
+[ RUN      ] store_NormTest.proper_setup_works
+[       OK ] store_NormTest.proper_setup_works (0 ms)
+[----------] 1 test from store_NormTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"store_NormTest.proper_setup_works" end time: Nov 23 10:40 PST
+"store_NormTest.proper_setup_works" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 23 10:40 PST

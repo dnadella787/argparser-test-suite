@@ -1,3 +1,5 @@
-store_test.proper_setup_works 2 0.00098195
-store_test.help_message_works 2 0.0008111
+store_DeathTest.help_message_works1 11 0.000320964
+store_DeathTest.help_message_works2 11 0.000321536
+store_NormTest.proper_setup_works 10 0.00026487
+store_DeathTest.requirement_works 3 0.0011495
 ---

@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/argparser_test.dir/argparser_test.cpp.o"
+  "CMakeFiles/argparser_test.dir/store_NTest.cpp.o"
   "argparser_test"
   "argparser_test.pdb"
   "argparser_test[1]_tests.cmake"

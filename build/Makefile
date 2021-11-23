@@ -232,32 +232,32 @@ gtest/fast:
 	$(MAKE) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build
 .PHONY : gtest/fast
 
-argparser_test.o: argparser_test.cpp.o
+store_NTest.o: store_NTest.cpp.o
 
-.PHONY : argparser_test.o
+.PHONY : store_NTest.o
 
 # target to build an object file
-argparser_test.cpp.o:
-	$(MAKE) -f CMakeFiles/argparser_test.dir/build.make CMakeFiles/argparser_test.dir/argparser_test.cpp.o
-.PHONY : argparser_test.cpp.o
+store_NTest.cpp.o:
+	$(MAKE) -f CMakeFiles/argparser_test.dir/build.make CMakeFiles/argparser_test.dir/store_NTest.cpp.o
+.PHONY : store_NTest.cpp.o
 
-argparser_test.i: argparser_test.cpp.i
+store_NTest.i: store_NTest.cpp.i
 
-.PHONY : argparser_test.i
+.PHONY : store_NTest.i
 
 # target to preprocess a source file
-argparser_test.cpp.i:
-	$(MAKE) -f CMakeFiles/argparser_test.dir/build.make CMakeFiles/argparser_test.dir/argparser_test.cpp.i
-.PHONY : argparser_test.cpp.i
+store_NTest.cpp.i:
+	$(MAKE) -f CMakeFiles/argparser_test.dir/build.make CMakeFiles/argparser_test.dir/store_NTest.cpp.i
+.PHONY : store_NTest.cpp.i
 
-argparser_test.s: argparser_test.cpp.s
+store_NTest.s: store_NTest.cpp.s
 
-.PHONY : argparser_test.s
+.PHONY : store_NTest.s
 
 # target to generate assembly for a file
-argparser_test.cpp.s:
-	$(MAKE) -f CMakeFiles/argparser_test.dir/build.make CMakeFiles/argparser_test.dir/argparser_test.cpp.s
-.PHONY : argparser_test.cpp.s
+store_NTest.cpp.s:
+	$(MAKE) -f CMakeFiles/argparser_test.dir/build.make CMakeFiles/argparser_test.dir/store_NTest.cpp.s
+.PHONY : store_NTest.cpp.s
 
 # Help Target
 help:
@@ -277,9 +277,9 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
-	@echo "... argparser_test.o"
-	@echo "... argparser_test.i"
-	@echo "... argparser_test.s"
+	@echo "... store_NTest.o"
+	@echo "... store_NTest.i"
+	@echo "... store_NTest.s"
 .PHONY : help
 
 
