@@ -1,0 +1,51 @@
+Start testing: Nov 23 04:58 PST
+----------------------------------------------------------
+1/2 Testing: store_test.proper_setup_works
+1/2 Test: store_test.proper_setup_works
+Command: "/home/dnadella787/argparse-test-suite/build/argparser_test" "--gtest_filter=store_test.proper_setup_works" "--gtest_also_run_disabled_tests"
+Directory: /home/dnadella787/argparse-test-suite/build
+"store_test.proper_setup_works" start time: Nov 23 04:58 PST
+Output:
+----------------------------------------------------------
+Running main() from /home/dnadella787/argparse-test-suite/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = store_test.proper_setup_works
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from store_test
+[ RUN      ] store_test.proper_setup_works
+[       OK ] store_test.proper_setup_works (1 ms)
+[----------] 1 test from store_test (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"store_test.proper_setup_works" end time: Nov 23 04:58 PST
+"store_test.proper_setup_works" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/2 Testing: store_test.help_message_works
+2/2 Test: store_test.help_message_works
+Command: "/home/dnadella787/argparse-test-suite/build/argparser_test" "--gtest_filter=store_test.help_message_works" "--gtest_also_run_disabled_tests"
+Directory: /home/dnadella787/argparse-test-suite/build
+"store_test.help_message_works" start time: Nov 23 04:58 PST
+Output:
+----------------------------------------------------------
+Running main() from /home/dnadella787/argparse-test-suite/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = store_test.help_message_works
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from store_test
+[ RUN      ] store_test.help_message_works
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"store_test.help_message_works" end time: Nov 23 04:58 PST
+"store_test.help_message_works" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 23 04:58 PST

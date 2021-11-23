@@ -1,0 +1,5 @@
+add_test( store_test.proper_setup_works /home/dnadella787/argparse-test-suite/build/argparser_test [==[--gtest_filter=store_test.proper_setup_works]==] --gtest_also_run_disabled_tests)
+set_tests_properties( store_test.proper_setup_works PROPERTIES WORKING_DIRECTORY /home/dnadella787/argparse-test-suite/build)
+add_test( store_test.help_message_works /home/dnadella787/argparse-test-suite/build/argparser_test [==[--gtest_filter=store_test.help_message_works]==] --gtest_also_run_disabled_tests)
+set_tests_properties( store_test.help_message_works PROPERTIES WORKING_DIRECTORY /home/dnadella787/argparse-test-suite/build)
+set( argparser_test_TESTS store_test.proper_setup_works store_test.help_message_works)

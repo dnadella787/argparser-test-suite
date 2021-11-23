@@ -1,0 +1,3 @@
+store_test.proper_setup_works 2 0.00098195
+store_test.help_message_works 2 0.0008111
+---
