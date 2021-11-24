@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
-#include "argparser-test-version.h"
-// #include "store_DTest.cpp"
-// #include "append_NTest.cpp"
-// #include "append_DTest.cpp"
+#include "argparser/argparser-test-version.h"
+#include "store_DTest.cpp"
+#include "append_NTest.cpp"
+#include "append_DTest.cpp"
 
 class store_NormTest : public ::testing::Test 
 {
