@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include "argparser-test-version.h"
 #include "store_DTest.cpp"
+#include "append_NTest.cpp"
+// #include "append_DTest.cpp"
 
 class store_NormTest : public ::testing::Test 
 {
@@ -23,6 +25,10 @@ protected:
 };
 
 
+/*
+just check to make sure that the set up was done
+in the SetUp() function actually worked properly.
+*/
 TEST_F(store_NormTest, proper_setup_works)
 {
     ASSERT_EQ(1, p.known_arguments.size()) << "STORE argument could not be added to parser" << std::endl;
@@ -37,5 +43,118 @@ TEST_F(store_NormTest, proper_setup_works)
     a.set_requirement(true);
     EXPECT_EQ(true, a.is_required);
 }
+
+
+/*
+checks that when no input is passed in or when
+= is used without anything after or another flag after
+it should be empty and get_store should return
+NO_INPUT
+*/
+TEST_F(store_NormTest, no_input1)
+{
+    ASSERT_EQ(false, a.is_required);
+    ASSERT_EQ(STORE, a.action);
+
+    char* argv_[3] = { (char*)"prog_name", (char*)"first", (char*)"second" };
+    int argc_ = 3;
+
+    p.parse_args(argc_, argv_);
+
+    EXPECT_EQ(true, a.is_empty());
+    EXPECT_EQ(NO_INPUT, a.get_store());
+}
+
+
+
+/*
+input passed in properly after = this time
+*/
+TEST_F(store_NormTest, input1)
+{
+    ASSERT_EQ(false, a.is_required);
+    ASSERT_EQ(STORE, a.action);
+
+    char* argv_[2] = { (char*)"prog_name", (char*)"-a=first" };
+    int argc_ = 2;
+
+    p.parse_args(argc_, argv_);
+
+    EXPECT_EQ(false, a.is_empty());
+    EXPECT_EQ("first", a.get_store());
+}
+
+TEST_F(store_NormTest, input2)
+{
+    ASSERT_EQ(false, a.is_required);
+    ASSERT_EQ(STORE, a.action);
+
+    char* argv_[3] = { (char*)"prog_name", (char*)"-a", (char*)"first" };
+    int argc_ = 3;
+
+    p.parse_args(argc_, argv_);
+
+    EXPECT_EQ(false, a.is_empty());
+    EXPECT_EQ("first", a.get_store());
+}
+
+TEST_F(store_NormTest, input3)
+{
+    ASSERT_EQ(false, a.is_required);
+    ASSERT_EQ(STORE, a.action);
+
+    char* argv_[3] = { (char*)"prog_name", (char*)"--apple", (char*)"first" };
+    int argc_ = 3;
+
+    p.parse_args(argc_, argv_);
+
+    EXPECT_EQ(false, a.is_empty());
+    EXPECT_EQ("first", a.get_store());
+}
+/*
+make sure that passing in flag again overwrites previous value
+*/
+TEST_F(store_NormTest, input4)
+{
+    ASSERT_EQ(false, a.is_required);
+    ASSERT_EQ(STORE, a.action);
+
+    char* argv_[3] = { (char*)"prog_name", (char*)"-a=first", (char*)"-a=second"};
+    int argc_ = 3;
+
+    p.parse_args(argc_, argv_);
+
+    EXPECT_EQ(false, a.is_empty());
+    EXPECT_EQ("second", a.get_store());
+}
+
+TEST_F(store_NormTest, input5)
+{
+    ASSERT_EQ(false, a.is_required);
+    ASSERT_EQ(STORE, a.action);
+
+    char* argv_[5] = { (char*)"prog_name", (char*)"-a", (char*)"first", (char*)"-a", (char*)"second"};
+    int argc_ = 5;
+
+    p.parse_args(argc_, argv_);
+
+    EXPECT_EQ(false, a.is_empty());
+    EXPECT_EQ("second", a.get_store());
+}
+
+TEST_F(store_NormTest, input6)
+{
+    ASSERT_EQ(false, a.is_required);
+    ASSERT_EQ(STORE, a.action);
+
+    char* argv_[5] = { (char*)"prog_name", (char*)"--apple", (char*)"first", (char*)"--apple", (char*)"second"};
+    int argc_ = 5;
+
+    p.parse_args(argc_, argv_);
+
+    EXPECT_EQ(false, a.is_empty());
+    EXPECT_EQ("second", a.get_store());
+}
+
 
 

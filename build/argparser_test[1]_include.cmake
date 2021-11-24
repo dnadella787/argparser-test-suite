@@ -1,5 +1,0 @@
-if(EXISTS "/home/dnadella787/argparse-test-suite/build/argparser_test[1]_tests.cmake")
-  include("/home/dnadella787/argparse-test-suite/build/argparser_test[1]_tests.cmake")
-else()
-  add_test(argparser_test_NOT_BUILT argparser_test_NOT_BUILT)
-endif()

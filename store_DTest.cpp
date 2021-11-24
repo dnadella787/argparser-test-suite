@@ -35,24 +35,45 @@ protected:
 };
 
 
+
+
 /*
 simple test, just checks to see if help message 
 is actually outputted
 
-all help_message_worksx tests establish that help
+all h[elp]_message_works[x] tests establish that help
 message takes priority over any error that would
 cause an exit
 
 LOOK FOR BETTER SOLUTION THAN CaptureStdout for
 all help_message_worksx tests
 */
-TEST_F(store_DeathTest, help_message_works1)
+TEST_F(store_DeathTest, h_message_works1)
 {
-    char* argv_help1[2] = { (char*)"prog_name", (char*)"-h" };
-    int argc_help1 = 2;
+    char* argv_[2] = { (char*)"prog_name", (char*)"-h" };
+    int argc_ = 2;
 
     testing::internal::CaptureStdout();
-    EXPECT_EXIT(p.parse_args(argc_help1, argv_help1), testing::ExitedWithCode(EXIT_SUCCESS), "");
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_SUCCESS), "");
+    std::cout.flush();
+    std::string output = testing::internal::GetCapturedStdout();
+
+    EXPECT_NE(output.find("-a"), std::string::npos);
+    EXPECT_NE(output.find("--apple"), std::string::npos);
+    EXPECT_NE(output.find("decides if apple or not"), std::string::npos);
+    EXPECT_NE(output.find("description"), std::string::npos);
+    EXPECT_NE(output.find("argparse_test1"), std::string::npos);
+    EXPECT_NE(output.find("first argparse test in suite"), std::string::npos);
+    EXPECT_NE(output.find("generates this help/usage message"), std::string::npos);
+}
+
+TEST_F(store_DeathTest, help_message_works1)
+{
+    char* argv_[2] = { (char*)"prog_name", (char*)"--help" };
+    int argc_ = 2;
+
+    testing::internal::CaptureStdout();
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_SUCCESS), "");
     std::cout.flush();
     std::string output = testing::internal::GetCapturedStdout();
 
@@ -66,47 +87,40 @@ TEST_F(store_DeathTest, help_message_works1)
 }
 
 
+
+
 /*
-makes sure help message is outputted even though 
-unrecognized flags are specified
+makes sure that help message is outputted even 
+though multiple valid and invalid inputs are 
+specified.
 */
+TEST_F(store_DeathTest, h_message_works2)
+{
+    char* argv_[5] = { (char*)"prog_name", (char*)"-a", (char*)"-grskd", (char*)"-dfks", (char*)"-h" };
+    int argc_ = 5;
+
+    testing::internal::CaptureStdout();
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_SUCCESS), "");
+    std::cout.flush();
+    std::string output = testing::internal::GetCapturedStdout();
+
+    EXPECT_NE(output.find("generates this help/usage message"), std::string::npos);
+}
+
 TEST_F(store_DeathTest, help_message_works2)
 {
-    char* argv_help2[4] = { (char*)"prog_name", (char*)"--a", (char*)"input1", (char*)"-h" };
-    int argc_help2 = 4;
+    char* argv_[5] = { (char*)"prog_name", (char*)"--apple", (char*)"-grskd", (char*)"-dfks", (char*)"--help" };
+    int argc_ = 5;
 
     testing::internal::CaptureStdout();
-    EXPECT_EXIT(p.parse_args(argc_help2, argv_help2), testing::ExitedWithCode(EXIT_SUCCESS), "");
-    std::cout.flush();
-    std::string output = testing::internal::GetCapturedStdout();
-
-    EXPECT_NE(output.find("generates this help/usage message"), std::string::npos);
-
-    // EXPECT_NE(output.find("-a"), std::string::npos);
-    // EXPECT_NE(output.find("--apple"), std::string::npos);
-    // EXPECT_NE(output.find("decides if apple or not"), std::string::npos);
-    // EXPECT_NE(output.find("description"), std::string::npos);
-    // EXPECT_NE(output.find("argparse_test1"), std::string::npos);
-    // EXPECT_NE(output.find("first argparse test in suite"), std::string::npos);
-}
-
-
-/*
-makes sure that help message is outputted 
-even though multiple invalid inputs are specified.
-*/
-TEST_F(store_DeathTest, help_message_works3)
-{
-    char* argv_help3[5] = { (char*)"prog_name", (char*)"--bjor", (char*)"-grskd", (char*)"-dfks", (char*)"-h" };
-    int argc_help3 = 5;
-
-    testing::internal::CaptureStdout();
-    EXPECT_EXIT(p.parse_args(argc_help3, argv_help3), testing::ExitedWithCode(EXIT_SUCCESS), "");
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_SUCCESS), "");
     std::cout.flush();
     std::string output = testing::internal::GetCapturedStdout();
 
     EXPECT_NE(output.find("generates this help/usage message"), std::string::npos);
 }
+
+
 
 
 /*
@@ -126,84 +140,244 @@ TEST_F(store_DeathTest, requirement_works)
 }
 
 
+
+
 /*
 make sure that the program ends if too many inputs 
 are given for -a or --apple. Should EXIT_FAILURE and 
 output to stderr, check both.
 */
-TEST_F(store_DeathTest, too_many_inputs_works2)
+TEST_F(store_DeathTest, too_many_inputs1)
 {
     ASSERT_EQ(STORE, a.action);
-    char* argv_1[4] = { (char*)"prog_name", (char*)"-a", (char*)"first", (char*)"second" };
-    int argc_1 = 5;
+    char* argv_[4] = { (char*)"prog_name", (char*)"-a", (char*)"first", (char*)"second" };
+    int argc_ = 4;
     
-    EXPECT_EXIT(p.parse_args(argc_1, argv_1), testing::ExitedWithCode(EXIT_FAILURE), "too many inputs");
-
-    char* argv_2[4] = { (char*)"prog_name", (char*)"--apple", (char*)"first", (char*)"second" };
-    int argc_2 = 5;
-
-    EXPECT_EXIT(p.parse_args(argc_2, argv_2), testing::ExitedWithCode(EXIT_FAILURE), "too many inputs");
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "too many inputs");
 }
+
+TEST_F(store_DeathTest, too_many_inputs2)
+{
+    ASSERT_EQ(STORE, a.action);
+    char* argv_[4] = { (char*)"prog_name", (char*)"--apple", (char*)"first", (char*)"second" };
+    int argc_ = 4;
+
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "too many inputs");
+}
+
+
 
 
 /*
-same but check for 3
+same but check for = input flag
 */
-TEST_F(store_DeathTest, too_many_inputs_works1)
+TEST_F(store_DeathTest, too_many_inputs3)
 {
     ASSERT_EQ(STORE, a.action);
-    char* argv_1[5] = { (char*)"prog_name", (char*)"-a", (char*)"first", (char*)"second", (char*)"third" };
-    int argc_1 = 5;
+    char* argv_[3] = { (char*)"prog_name", (char*)"-a=first", (char*)"second" };
+    int argc_ = 3;
     
-    EXPECT_EXIT(p.parse_args(argc_1, argv_1), testing::ExitedWithCode(EXIT_FAILURE), "too many inputs");
-
-    char* argv_2[5] = { (char*)"prog_name", (char*)"--apple", (char*)"first", (char*)"second", (char*)"third" };
-    int argc_2 = 5;
-
-    EXPECT_EXIT(p.parse_args(argc_2, argv_2), testing::ExitedWithCode(EXIT_FAILURE), "too many inputs");
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "too many inputs");
 }
+
+TEST_F(store_DeathTest, too_many_inputs4)
+{
+    ASSERT_EQ(STORE, a.action);
+    char* argv_[3] = { (char*)"prog_name", (char*)"--apple=first", (char*)"second" };
+    int argc_ = 3;
+
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "too many inputs");
+}
+
+
 
 
 /*
 same but shifted one back
 */
-TEST_F(store_DeathTest, too_many_inputs_works3)
+TEST_F(store_DeathTest, too_many_inputs5)
 {
     ASSERT_EQ(STORE, a.action);
-    char* argv_1[5] = { (char*)"prog_name", (char*)"first", (char*)"-a", (char*)"second", (char*)"third" };
-    int argc_1 = 5;
+    char* argv_[5] = { (char*)"prog_name", (char*)"first", (char*)"-a", (char*)"second", (char*)"third" };
+    int argc_ = 5;
     
-    EXPECT_EXIT(p.parse_args(argc_1, argv_1), testing::ExitedWithCode(EXIT_FAILURE), "too many inputs");
-
-    char* argv_2[5] = { (char*)"prog_name", (char*)"first", (char*)"--apple", (char*)"second", (char*)"third" };
-    int argc_2 = 5;
-
-    EXPECT_EXIT(p.parse_args(argc_2, argv_2), testing::ExitedWithCode(EXIT_FAILURE), "too many input");
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "too many inputs");
 }
+
+TEST_F(store_DeathTest, too_many_inputs6)
+{
+    ASSERT_EQ(STORE, a.action);
+    char* argv_[5] = { (char*)"prog_name", (char*)"first", (char*)"--apple", (char*)"second", (char*)"third" };
+    int argc_ = 5;
+
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "too many input");
+}
+
+TEST_F(store_DeathTest, too_many_inputs7)
+{
+    ASSERT_EQ(STORE, a.action);
+    char* argv_[4] = { (char*)"prog_name", (char*)"first", (char*)"-a=second", (char*)"third" };
+    int argc_ = 4;
+    
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "too many inputs");
+}
+
+TEST_F(store_DeathTest, too_many_inputs8)
+{
+    ASSERT_EQ(STORE, a.action);
+    char* argv_[4] = { (char*)"prog_name", (char*)"first", (char*)"--apple=second", (char*)"third" };
+    int argc_ = 4;
+
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "too many input");
+}
+
+
+
 
 /*
 same but shifted one back and also has unrecognized arguments
 but the unrecognized argument should be first error not
 too many inputs
 */
-TEST_F(store_DeathTest, false_arg_first)
+TEST_F(store_DeathTest, false_arg_first1)
 {
     ASSERT_EQ(STORE, a.action);
-    char* argv_1[5] = { (char*)"prog_name", (char*)"-first", (char*)"-a", (char*)"second", (char*)"third" };
-    int argc_1 = 5;
+    char* argv_[5] = { (char*)"prog_name", (char*)"-first", (char*)"-a", (char*)"second", (char*)"third" };
+    int argc_ = 5;
     
-    EXPECT_EXIT(p.parse_args(argc_1, argv_1), testing::ExitedWithCode(EXIT_FAILURE), "not a recognized");
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "not a recognized");
+}
 
-    char* argv_2[5] = { (char*)"prog_name", (char*)"-first", (char*)"--apple", (char*)"second", (char*)"third" };
-    int argc_2 = 5;
+TEST_F(store_DeathTest, false_arg_first2)
+{
+    ASSERT_EQ(STORE, a.action);
+    char* argv_[5] = { (char*)"prog_name", (char*)"-first", (char*)"--apple", (char*)"second", (char*)"third" };
+    int argc_ = 5;
 
-    EXPECT_EXIT(p.parse_args(argc_2, argv_2), testing::ExitedWithCode(EXIT_FAILURE), "not a recognized");
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "not a recognized");
 }
 
 
+
+
 /*
-check equal signs store as well
+makes sure help flag with = is not recognized
 */
+TEST_F(store_DeathTest, h_equals1)
+{
+    char* argv_help2[2] = { (char*)"prog_name", (char*)"-h=" };
+    int argc_help2 = 2;
+
+    EXPECT_EXIT(p.parse_args(argc_help2, argv_help2), testing::ExitedWithCode(EXIT_FAILURE), "not a recognized flag");
+}
+
+TEST_F(store_DeathTest, help_equal1)
+{
+    char* argv_help2[2] = { (char*)"prog_name", (char*)"--help=" };
+    int argc_help2 = 2;
+
+    EXPECT_EXIT(p.parse_args(argc_help2, argv_help2), testing::ExitedWithCode(EXIT_FAILURE), "not a recognized flag");
+}
+
+TEST_F(store_DeathTest, h_equals2)
+{
+    char* argv_help2[2] = { (char*)"prog_name", (char*)"-h=fd" };
+    int argc_help2 = 2;
+
+    EXPECT_EXIT(p.parse_args(argc_help2, argv_help2), testing::ExitedWithCode(EXIT_FAILURE), "not a recognized flag");
+}
+
+TEST_F(store_DeathTest, help_equals2)
+{
+    char* argv_help2[2] = { (char*)"prog_name", (char*)"--help=fd" };
+    int argc_help2 = 2;
+
+    EXPECT_EXIT(p.parse_args(argc_help2, argv_help2), testing::ExitedWithCode(EXIT_FAILURE), "not a recognized flag");
+}
+
+
+
+/*
+Make sure that you cannot call the get_[action]() 
+method other than get_store().
+*/
+TEST_F(store_DeathTest, illegal_get_append1)
+{
+    char* argv_[3] = { (char*)"prog_name", (char*)"-a", (char*)"input" };
+    int argc_ = 3;
+
+    p.parse_args(argc_, argv_);
+
+    EXPECT_EXIT(a.get_append(), testing::ExitedWithCode(EXIT_FAILURE), "does not have action APPEND");
+}
+
+TEST_F(store_DeathTest, illegal_get_append2)
+{
+    char* argv_[3] = { (char*)"prog_name", (char*)"--apple", (char*)"input" };
+    int argc_ = 3;
+
+    p.parse_args(argc_, argv_);
+
+    EXPECT_EXIT(a.get_append(), testing::ExitedWithCode(EXIT_FAILURE), "does not have action APPEND");
+}
+
+TEST_F(store_DeathTest, illegal_get_count1)
+{
+    char* argv_[3] = { (char*)"prog_name", (char*)"-a", (char*)"input" };
+    int argc_ = 3;
+
+    p.parse_args(argc_, argv_);
+
+    EXPECT_EXIT(a.get_count(), testing::ExitedWithCode(EXIT_FAILURE), "does not have COUNT action");
+}
+
+TEST_F(store_DeathTest, illegal_get_count2)
+{
+    char* argv_[3] = { (char*)"prog_name", (char*)"--apple", (char*)"input" };
+    int argc_ = 3;
+
+    p.parse_args(argc_, argv_);
+
+    EXPECT_EXIT(a.get_count(), testing::ExitedWithCode(EXIT_FAILURE), "does not have COUNT action");
+}
+
+/*
+check that when = is used without output after
+program stops executing.
+*/
+TEST_F(store_DeathTest, input_equal_failure)
+{
+    ASSERT_EQ(false, a.is_required);
+    ASSERT_EQ(STORE, a.action);
+
+    char* argv_[3] = { (char*)"prog_name", (char*)"-a=", (char*)"first" };
+    int argc_ = 3;
+
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "no input after =");
+}
+
+TEST_F(store_DeathTest, no_input1)
+{
+    ASSERT_EQ(false, a.is_required);
+    ASSERT_EQ(STORE, a.action);
+
+    char* argv_[2] = { (char*)"prog_name", (char*)"-a=" };
+    int argc_ = 2;
+
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "no input after =");
+}
+
+TEST_F(store_DeathTest, no_input2)
+{
+    ASSERT_EQ(false, a.is_required);
+    ASSERT_EQ(STORE, a.action);
+
+    char* argv_[2] = { (char*)"prog_name", (char*)"--apple=" };
+    int argc_ = 2;
+
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "no input after =");
+}
+
 
 
 
