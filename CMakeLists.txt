@@ -23,6 +23,9 @@ enable_testing()
 add_executable(
   argparser_test
   store_NTest.cpp
+  store_DTest.cpp 
+  append_NTest.cpp 
+  append_DTest.cpp 
 )
 
 target_link_libraries(
