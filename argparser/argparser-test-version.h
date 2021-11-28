@@ -168,7 +168,7 @@ inline int argument::get_count()
 inline bool argument::get_store_tf()
 {
     if (action == STORE_FALSE)
-        return (data[0] != STORE_F_DEFAULT);
+        return (data[0] == STORE_F_DEFAULT);
     else if (action == STORE_TRUE)
         return (data[0] != STORE_T_DEFAULT);
     else
@@ -552,14 +552,7 @@ inline void parser::parse_args(const int& argc, char** argv)
                 int arg_num = match(actual_flag.substr(0, equal_iter));
                 if (arg_num >= 0)
                 {
-                    if (known_arguments[arg_num]->action == STORE)
-                        equal_action_store(arg_num, i, argc, argv, equal_iter);
-                    else 
-                    {
-                        std::cerr << "ERROR: '=' can only be used for single input arguments like -f=file" << std::endl;
-                        print_help();
-                        exit(EXIT_FAILURE);
-                    }
+                    equal_action_store(arg_num, i, argc, argv, equal_iter);
                 }
                 else
                 {
@@ -587,7 +580,7 @@ inline void parser::parse_args(const int& argc, char** argv)
 
     for (argument *a : known_arguments)
     {
-        if (a->is_required)
+        if (a->is_required && a->action != STORE_FALSE && a->action != STORE_TRUE)
         {
             if (a->action == COUNT && a->count == 0)
             {
@@ -603,7 +596,7 @@ inline void parser::parse_args(const int& argc, char** argv)
             }
             else if (a->data.size() == 0)
             {
-                std::cerr << "ERROR: " << a->accepted_flags[0] << " is a required argument." << std::endl;
+                std::cerr << "ERROR: " << a->accepted_flags[0] << " is a required APPEND argument." << std::endl;
                 print_help();
                 exit(EXIT_FAILURE);
             }

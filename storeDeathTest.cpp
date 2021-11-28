@@ -131,7 +131,7 @@ Should EXIT_FAILURE and output to stderr, check both.
 TEST_F(storeDeathTest, requirement_works)
 {
     a.set_requirement(true);
-    ASSERT_EQ(true, a.is_required);
+    ASSERT_TRUE(a.is_required);
 
     char* argv_[3] = { (char*)"prog_name" , (char*)"nonsense", (char*)"nonsense" };
     int argc_ = 3;
@@ -245,7 +245,7 @@ TEST_F(storeDeathTest, false_arg_first1)
     char* argv_[5] = { (char*)"prog_name", (char*)"-first", (char*)"-a", (char*)"second", (char*)"third" };
     int argc_ = 5;
     
-    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "not a recognized");
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "-first is not a recognized");
 }
 
 TEST_F(storeDeathTest, false_arg_first2)
@@ -254,7 +254,16 @@ TEST_F(storeDeathTest, false_arg_first2)
     char* argv_[5] = { (char*)"prog_name", (char*)"-first", (char*)"--apple", (char*)"second", (char*)"third" };
     int argc_ = 5;
 
-    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "not a recognized");
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "-first is not a recognized");
+}
+
+TEST_F(storeDeathTest, false_arg_first3)
+{
+    ASSERT_EQ(STORE, a.action);
+    char* argv_[5] = { (char*)"prog_name", (char*)"-first=", (char*)"--apple", (char*)"second", (char*)"third" };
+    int argc_ = 5;
+
+    EXPECT_EXIT(p.parse_args(argc_, argv_), testing::ExitedWithCode(EXIT_FAILURE), "-first= is not a recognized");
 }
 
 
@@ -341,13 +350,35 @@ TEST_F(storeDeathTest, illegal_get_count2)
     EXPECT_EXIT(a.get_count(), testing::ExitedWithCode(EXIT_FAILURE), "does not have COUNT action");
 }
 
+TEST_F(storeDeathTest, illegal_get_store_tf1)
+{
+    char* argv_[3] = { (char*)"prog_name", (char*)"--apple", (char*)"input" };
+    int argc_ = 3;
+
+    p.parse_args(argc_, argv_);
+
+    EXPECT_EXIT(a.get_store_tf(), testing::ExitedWithCode(EXIT_FAILURE), "does not have action STORE_FALSE");
+}
+
+TEST_F(storeDeathTest, illegal_get_store_tf2)
+{
+    char* argv_[3] = { (char*)"prog_name", (char*)"-a", (char*)"input" };
+    int argc_ = 3;
+
+    p.parse_args(argc_, argv_);
+
+    EXPECT_EXIT(a.get_store_tf(), testing::ExitedWithCode(EXIT_FAILURE), "does not have action STORE_FALSE");
+}
+
+
+
 /*
 check that when = is used without output after
 program stops executing.
 */
 TEST_F(storeDeathTest, input_equal_failure)
 {
-    ASSERT_EQ(false, a.is_required);
+    ASSERT_FALSE(a.is_required);
     ASSERT_EQ(STORE, a.action);
 
     char* argv_[3] = { (char*)"prog_name", (char*)"-a=", (char*)"first" };
@@ -358,7 +389,7 @@ TEST_F(storeDeathTest, input_equal_failure)
 
 TEST_F(storeDeathTest, no_input1)
 {
-    ASSERT_EQ(false, a.is_required);
+    ASSERT_FALSE(a.is_required);
     ASSERT_EQ(STORE, a.action);
 
     char* argv_[2] = { (char*)"prog_name", (char*)"-a=" };
@@ -369,7 +400,7 @@ TEST_F(storeDeathTest, no_input1)
 
 TEST_F(storeDeathTest, no_input2)
 {
-    ASSERT_EQ(false, a.is_required);
+    ASSERT_FALSE(a.is_required);
     ASSERT_EQ(STORE, a.action);
 
     char* argv_[2] = { (char*)"prog_name", (char*)"--apple=" };

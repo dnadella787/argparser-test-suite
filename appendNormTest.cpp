@@ -35,11 +35,11 @@ TEST_F(appendNormTest, proper_setup_works)
     EXPECT_EQ("--verbose", a.accepted_flags[1]);
     EXPECT_EQ(APPEND, a.action);
     EXPECT_EQ("decides output style", a.help_message);
-    EXPECT_EQ(false, a.is_required);
+    EXPECT_FALSE(a.is_required);
     EXPECT_EQ(3, a.n_args);
 
     a.set_requirement(true);
-    EXPECT_EQ(true, a.is_required);
+    EXPECT_TRUE(a.is_required);
 }
 
 /*
@@ -55,7 +55,7 @@ TEST_F(appendNormTest, no_input)
     p.parse_args(argc_, argv_);
 
     EXPECT_EQ(0, a.get_append().size());
-    EXPECT_EQ(true, a.is_empty());
+    EXPECT_TRUE(a.is_empty());
 }
 
 
@@ -76,7 +76,7 @@ TEST_F(appendNormTest, input1)
 
     std::vector<std::string> output = a.get_append();
     ASSERT_EQ(3, output.size());
-    EXPECT_EQ(false, a.is_empty());
+    EXPECT_FALSE(a.is_empty());
     EXPECT_EQ("first", output[0]);
     EXPECT_EQ("second", output[1]);
     EXPECT_EQ("third", output[2]);
@@ -91,7 +91,7 @@ TEST_F(appendNormTest, input2)
 
     std::vector<std::string> output = a.get_append();
     ASSERT_EQ(3, output.size());
-    EXPECT_EQ(false, a.is_empty());
+    EXPECT_FALSE(a.is_empty());
     EXPECT_EQ("first", output[0]);
     EXPECT_EQ("second", output[1]);
     EXPECT_EQ("third", output[2]);
@@ -106,7 +106,7 @@ TEST_F(appendNormTest, input3)
 
     std::vector<std::string> output = a.get_append();
     ASSERT_EQ(3, output.size());
-    EXPECT_EQ(false, a.is_empty());
+    EXPECT_FALSE(a.is_empty());
     EXPECT_EQ("first", output[0]);
     EXPECT_EQ("second", output[1]);
     EXPECT_EQ("third", output[2]);
@@ -121,7 +121,7 @@ TEST_F(appendNormTest, input4)
 
     std::vector<std::string> output = a.get_append();
     ASSERT_EQ(3, output.size());
-    EXPECT_EQ(false, a.is_empty());
+    EXPECT_FALSE(a.is_empty());
     EXPECT_EQ("first", output[0]);
     EXPECT_EQ("second", output[1]);
     EXPECT_EQ("third", output[2]);
