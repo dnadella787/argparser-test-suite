@@ -20,15 +20,18 @@ enable_testing()
 
 add_executable(
   argparser_test
+  storeNormTest.cpp
+  storeDeathTest.cpp 
+  appendNormTest.cpp 
+  appendDeathTest.cpp 
+  countDeathTest.cpp 
+  countNormTest.cpp 
   storeTFNormTest.cpp 
+  storeTFDeathTest.cpp 
+  mixedNormTest1.cpp
+  mixedDeathTest1.cpp 
 )
 
-# storeNormTest.cpp
-# storeDeathTest.cpp 
-# appendNormTest.cpp 
-# appendDeathTest.cpp 
-# countDeathTest.cpp 
-# countNormTest.cpp 
 
 target_link_libraries(
   argparser_test
